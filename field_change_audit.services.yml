@@ -1,0 +1,8 @@
+services:
+  field_change_audit.logger:
+    class: Drupal\field_change_audit\AuditLogger
+    arguments:
+      - '@database'
+      - '@current_user'
+      - '@logger.factory'
+      - '@entity_type.manager'

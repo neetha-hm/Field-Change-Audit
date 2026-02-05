@@ -1,0 +1,3 @@
+view field change audit:
+  title: 'View field change audit logs'
+  description: 'Allows users to view audit history for content.'

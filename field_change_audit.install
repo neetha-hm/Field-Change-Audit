@@ -1,0 +1,78 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall hooks for Field Change Audit.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function field_change_audit_install() {
+  $database = \Drupal::database();
+  if (!$database->schema()->tableExists('field_change_audit_log')) {
+    $schema = [
+      'description' => 'Stores field change audits.',
+      'fields' => [
+        'id' => [
+          'type' => 'serial',
+          'not null' => TRUE,
+          'description' => 'Primary Key: unique log ID.',
+        ],
+        'entity_type' => [
+          'type' => 'varchar',
+          'length' => 32,
+          'not null' => TRUE,
+          'description' => 'Entity type (e.g., node).',
+        ],
+        'entity_id' => [
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => 'Entity ID.',
+        ],
+        'revision_id' => [
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => 'Revision ID.',
+        ],
+        'field_name' => [
+          'type' => 'varchar',
+          'length' => 128,
+          'not null' => TRUE,
+          'description' => 'Field name that changed.',
+        ],
+        'diff' => [
+          'type' => 'text',
+          'size' => 'big',
+          'description' => 'Diff of the change.',
+        ],
+        'changed' => [
+          'type' => 'int',
+          'not null' => TRUE,
+          'description' => 'Timestamp of the change.',
+        ],
+        'uid' => [
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => 'User ID who made the change.',
+        ],
+      ],
+      'primary key' => ['id'],
+      'indexes' => [
+        'entity' => ['entity_type', 'entity_id'],
+        'uid' => ['uid'],
+      ],
+    ];
+    $database->schema()->createTable('field_change_audit_log', $schema);
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function field_change_audit_uninstall() {
+  \Drupal::database()->schema()->dropTable('field_change_audit_log');
+}

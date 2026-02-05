@@ -1,0 +1,8 @@
+field_change_audit.audit_tab:
+  path: '/node/{node}/audit'
+  defaults:
+    _controller: '\Drupal\field_change_audit\Controller\AuditController::viewAudit'
+    _title: 'Field Audit'
+  requirements:
+    _permission: 'view field change audit'
+    node: \d+

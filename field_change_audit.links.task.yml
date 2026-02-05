@@ -1,0 +1,5 @@
+field_change_audit.audit_tab:
+  title: 'Field Audit'
+  route_name: field_change_audit.audit_tab
+  base_route: entity.node.canonical
+  weight: 20

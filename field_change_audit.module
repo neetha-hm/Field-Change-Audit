@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Field Change Audit module hooks.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
+
+/**
+ * Implements hook_entity_update().
+ */
+function field_change_audit_entity_update(EntityInterface $entity) {
+
+  // Only content entities.
+  if (!$entity instanceof ContentEntityInterface) {
+    return;
+  }
+
+  // Only nodes.
+  if ($entity->getEntityTypeId() !== 'node') {
+    return;
+  }
+
+  $original = $entity->original ?? NULL;
+
+  if ($original) {
+    \Drupal::service('field_change_audit.logger')
+      ->logChanges($entity, $original);
+  }
+}

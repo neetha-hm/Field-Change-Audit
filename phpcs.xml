@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="Drupal module check">
+  <description>Drupal coding standards for Field Change Audit.</description>
+
+  <rule ref="Drupal"/>
+  <rule ref="DrupalPractice"/>
+
+  <arg name="extensions" value="php,module,inc,install,yml"/>
+</ruleset>

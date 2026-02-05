@@ -1,0 +1,8 @@
+name: 'Field Change Audit (Lite)'
+type: module
+description: Logs field-level changes on node updates and provides an audit history tab.
+core_version_requirement: ^10 || ^11
+package: Content
+dependencies:
+  - drupal:node
+  - diff:diff

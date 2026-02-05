@@ -1,0 +1,9 @@
+{
+  "name": "neetha-hm/field-change-audit",
+  "description": "Logs field-level changes between entity revisions for audit tracking.",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/core": "^10 || ^11"
+  }
+}

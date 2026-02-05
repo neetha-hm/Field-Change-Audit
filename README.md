@@ -17,3 +17,5 @@ Enable the module and edit a node to start logging changes.
 ## Permissions
 - View field change audit logs
 
+## how to install
+- composer require neetha-hm/field-change-audit
